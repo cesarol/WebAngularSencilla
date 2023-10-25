@@ -1,19 +1,32 @@
-FROM ubuntu:22.04
+FROM node:18-alpine as build
 
 # Actualizando el sistema base
-RUN apt-get update && apt-get -y upgrade
-
-# Asegurandonos de tener los paquetes que necesitamos y comprobamos las versiones
-RUN apt-get install -y nodejs git
-RUN git --version
-RUN node --version
-RUN npm --version
-
-# Descargamos el contenedor 
-RUN git clone https://github.com/cesarol/WebAngularSencilla.git
+RUN mkdir -p /WebAngular
 
 # Nos dirigimos a la carpeta
-WORKDIR /WebAngularSencilla
+WORKDIR /WebAngular
+
+COPY package.json /WebAngular
 
 # Descargamos las dependencias referentes a la aplicación de angular
 RUN npm install
+
+COPY . /WebAngular
+
+# Inicializando angular
+RUN npm run start
+
+# Fase servidor
+FROM node:18-alpine as server
+
+COPY --from=build /WebAngular/API /API/prueba
+
+WORKDIR /API/prueba 
+
+RUN npm install
+
+RUN npm run dev
+
+FROM nginx:1.24.0-alpine 
+
+COPY --from=build /WebAngular /usr/share/nginx/html
