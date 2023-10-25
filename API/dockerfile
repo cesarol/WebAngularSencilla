@@ -13,6 +13,3 @@ WORKDIR /WebAngularSencilla/API
 
 # Descargamos dependencias de node
 RUN npm install
-
-# Iniciamos servidor
-RUN npm run dev

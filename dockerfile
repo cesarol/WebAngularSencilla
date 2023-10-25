@@ -17,6 +17,3 @@ WORKDIR /WebAngularSencilla
 
 # Descargamos las dependencias referentes a la aplicación de angular
 RUN npm install
-
-# Activamos nuestro servidor angular
-RUN npm run start
