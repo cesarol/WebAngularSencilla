@@ -10,7 +10,7 @@ RUN npm install
 
 COPY . /Api_server/
 
-RUN npm run tsc src/index.ts
+RUN npm run tsc
 
 CMD ["node", "build/indes.js"]
 
