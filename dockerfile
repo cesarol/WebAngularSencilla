@@ -14,18 +14,7 @@ RUN npm install
 COPY . /WebAngular
 
 # Inicializando angular
-RUN npm run start
-
-# Fase servidor
-FROM node:18-alpine as server
-
-COPY --from=build /WebAngular/API /API/prueba
-
-WORKDIR /API/prueba 
-
-RUN npm install
-
-RUN npm run dev
+RUN npm run build
 
 FROM nginx:1.24.0-alpine 
 

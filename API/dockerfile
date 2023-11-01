@@ -1,0 +1,16 @@
+FROM node:18-alpine
+
+RUN mkdir -p /Api_server
+
+WORKDIR /Api_server
+
+COPY package.json /Api_server
+
+RUN npm install
+
+COPY . /Api_server/
+
+RUN npm run tsc src/index.ts
+
+CMD ["node", "build/indes.js"]
+
