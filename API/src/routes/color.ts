@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getNameJonas, getNameCesar } from "../controllers/color.controller.ts";
+import { getNameJonas, getNameCesar } from "../controllers/color.controller";
 
 const NameRouter = Router();
 

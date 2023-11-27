@@ -12,5 +12,5 @@ COPY . /Api_server/
 
 RUN npm run tsc
 
-CMD ["node", "build/indes.js"]
+CMD ["package.json", "npm run dev"]
 
