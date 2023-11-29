@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:18-alpine as base
 
 RUN mkdir -p /Api_server
 
@@ -10,7 +10,9 @@ RUN npm install
 
 COPY . /Api_server/
 
-RUN npm run tsc
+FROM base as production
 
-CMD ["package.json", "npm run dev"]
+ENV NODE_PATH=./Api_server/build
+
+RUN npm run build
 
