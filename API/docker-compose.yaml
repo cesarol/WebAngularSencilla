@@ -6,11 +6,8 @@ services:
       context: .
       dockerfile: dockerfile
       target: base
-    volumes:
-      - ./src:/Api_server
     container_name: ts-node-docker
     expose:
-      - '4000'
+      - '5000'
     ports:
-      - '4000:4000'
-    command: npm run dev
+      - '5000:5000'

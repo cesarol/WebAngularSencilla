@@ -4,15 +4,13 @@ RUN mkdir -p /Api_server
 
 WORKDIR /Api_server
 
-COPY package.json /Api_server
+COPY package*.json .
+
+RUN chmod 644 package.json
 
 RUN npm install
 
-COPY . /Api_server/
+COPY . .
 
-FROM base as production
-
-ENV NODE_PATH=./Api_server/build
-
-RUN npm run build
+ENTRYPOINT [ "npm", "run", "dev" ]
 
