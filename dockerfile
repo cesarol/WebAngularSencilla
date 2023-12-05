@@ -18,4 +18,4 @@ RUN npm run build
 
 FROM nginx:1.24.0-alpine 
 
-COPY --from=build /WebAngular /usr/share/nginx/html
+COPY --from=build /WebAngular/dist /usr/share/nginx/html
