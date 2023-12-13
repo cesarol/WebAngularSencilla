@@ -18,4 +18,6 @@ RUN npm run build
 
 FROM nginx:1.24.0-alpine 
 
-COPY --from=build /WebAngular/dist /usr/share/nginx/html
+EXPOSE 4200
+
+COPY --from=build /WebAngular/dist/mi-aplicacion /usr/share/nginx/html
